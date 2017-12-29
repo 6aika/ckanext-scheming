@@ -40,7 +40,7 @@ class TestLanguageText(object):
 
     @patch('ckanext.scheming.helpers.lang')
     def test_no_user_lang(self, lang):
-        lang.side_effect = Exception()
+        lang.side_effect = TypeError()
         assert_equals('hello', scheming_language_text(
             {'en': 'hello', 'aa': 'aaaa'}))
 
@@ -76,7 +76,8 @@ class TestGetPreset(object):
             u'datetime',
             u'datetime_tz',
             u'dataset_slug',
-            u'dataset_organization'
+            u'dataset_organization',
+            u'json_object',
         )), sorted(presets.iterkeys()))
 
     def test_scheming_get_preset(self):
